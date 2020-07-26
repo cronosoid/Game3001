@@ -46,6 +46,9 @@ void PlayScene::update()
 
 	CollisionManager::AABBCheck(m_pPlayer, m_pObstacle);
 
+	if(m_bPatrolMode)
+		m_movePlaneToTargetNode();
+
 	m_setGridLOS();
 }
 
@@ -188,7 +191,7 @@ void PlayScene::handleEvents()
 
 			if (m_bPatrolMode)
 			{
-				m_movePlaneToTargetNode();
+				m_pPlaneSprite->getRigidBody()->maxSpeed = 5.0f;
 				std::cout << "DEBUG: Patrol Mode On" << std::endl;
 			}
 			else
